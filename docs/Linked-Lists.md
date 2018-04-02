@@ -1,3 +1,0 @@
-## Linked Lists
-
-Coming soon!
