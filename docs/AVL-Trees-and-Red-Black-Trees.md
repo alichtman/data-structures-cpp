@@ -22,7 +22,7 @@ AVL Tree considered height balanced if the absolute value of the balance factor 
 	    - Find In Order Predecessor (IOP), which is the rightmost node in the left subtree.
 	    - swap(IOP, root)
 	    - remove(root->left)
-    
+
 
 **Rotations**
 
@@ -103,4 +103,4 @@ void rebalance(Node *&subtree) {
 
 ## Red-Black Trees
 
-When you see "Red-Black Tree", you should think of an AVL Tree. They're both balanced BSTs.
+When you see "Red-Black Tree", just think of an AVL Tree. They're both balanced BSTs.

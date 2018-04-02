@@ -69,6 +69,8 @@ Relationship between degree of graph and edges: $degree = 2m$
 
 3. **Adjacency List**
 
+	![adj-list](https://github.com/alichtman/data-structures-cpp/blob/master/images/adjList.png)
+
 	Combines adjacency matrices with edge lists.
 
 	For each vertex, store an array of adjacenct vertices. Max size of array is $n - 1$.
@@ -76,7 +78,7 @@ Relationship between degree of graph and edges: $degree = 2m$
 	$2m$ list nodes. (?)
 
 	Example:
-![adj-list](images/adjList.png)
+
 
 	| Operation | Run Time  |
 	| ---	|	---	|

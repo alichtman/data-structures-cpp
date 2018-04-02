@@ -1,89 +1,3 @@
-Simple Graph
-: Graph with no self loops or multi-edges.
-
-Incident Edges
-: Edges coming off a node. `Degree(v)` is the number of Incident Edges.
-
-Number of Vertices: $n$
-Number of Edges: $m$
-
-Min num edges in an Unconnected Graph = 0
-Min num edges in a Minimally Connnected Graph = $n - 1$
-
-Max num edges in Simple Graph = $\frac{n \cdot (n-1)}{2}$
-Max num edges in Not Simple Graph = $\infty$ because self edges are allowed.
-
-Relationship between degree of graph and edges: $degree = 2m$
-
-**Graph Implementations**
-
-1. Edge List
-
-	An array of pairs of vertices (Edges). If edges have weights, add either a third element to the array or more information to the object.
-
-	The total space for an edge list is Θ(E).
-
-	To find if the graph contains a particular edge, we have to search through the entire edge list, so O(|E|).
-
-	Example : `[[0,1], [0,6], [0,8], [1,4], [1,6], [1,9], [2,4], [2,6], [3,4], [3,5]]`
-
-	| Operation | Run Time |
-	| ---	|	---	|
-	|	insertVertex(K key)	|	$O(1)$	|
-	|	removeVertex(K key)	|	$O(m)$	|
-	|	areAdjacent(Vertex v1, Vertex v2)	|	$O(m)$	|
-	|	incidentEdges(Vertex v)	|	$O(m)$	|
-
-2. **Adjacency Matrix**
-
-	v = Number of vertices (`|V|`).
-
-	The matrix is `v x v`. Number of edges is irrelevant.
-
-	An adjacency matrix can determine whether two vertices are adjacent in $O(1)$ time by looking at the corresponding entry.
-
-	`matrix[i][j]` is 1 if the edge `(i,j)` exists in the graph, otherwise it's 0.
-
-	The diagonal should be all 0s if the graph is Simple (no self edges).
-
-	For an undirected graph, adjacency matrix is symmetric.
-	For a directed graph, adjacency matrix is not necessarily symmetric.
-
-	It takes Θ(V2) space, even if the graph is sparse.
-
-	Example:
-
-		 [0, 1, 0, 0, 0, 0]
-		 [1, 0, 0, 0, 1, 0]
-		 [0, 0, 0, 0, 1, 0]
-		 [0, 0, 0, 0, 1, 1]
-		 [0, 1, 1, 1, 0, 1]
-		 [0, 0, 0, 1, 1, 0]
-
-	| Operation | Run Time  |
-	| ---	|	---	|
-	|	insertVertex(K key)	|	Amortized $O(n)*$ (?)	|
-	|	removeVertex(K key)	|	$O(n)$	|
-	|	areAdjacent(Vertex v1, Vertex v2)	|	O(1)	|
-	|	incidentEdges(Vertex v)	|	$O(n)$	|
-
-3. **Adjacency List**
-
-	Combines adjacency matrices with edge lists.
-
-	For each vertex, store an array of adjacenct vertices. Max size of array is $n - 1$.
-
-	![adj-list](https://ka-perseus-images.s3.amazonaws.com/cc82379521bd84738e86d6cf9552738ca9138420.png)
-
-	$2m$ list nodes. (?)
-
-	| Operation | Run Time  |
-	| ---	|	---	|
-	|	insertVertex(K key)	|	O(1)	|
-	|	removeVertex(K key)	|	O(deg(v))	|
-	|	areAdjacent(Vertex v1, Vertex v2)	|	O( min(deg(v1), deg(v2)) )	|
-	|	incidentEdges(Vertex v)	|	O(deg(v))	|
-
 **Graph BFS/DFS**
 
 Both BFS and DFS have optimal run times of $O(n + m)$.
@@ -154,9 +68,10 @@ Negative weight cycles *break **everything***.
 Both Kruskal and Prim's run in $O(m log(n))$
 
 1. Kruskal's Algorithm (MST) -- Next lowest weight edge until MST formed
+	![Kruskal](https://github.com/alichtman/data-structures-cpp/blob/master/images/Kruskal.jpg)
 	1. Choose the shortest edge
 	2. Choose the next lowest weighted edge on the graph, anywhere, that wouldn't create a cycle. Do this over and over until every vertex is in the tree.
-![Kruskal](images/Kruskal.jpg)
+
 
 | Priority Queue Implementation | Total Run Time |
 | ---	| ---	|
@@ -206,11 +121,11 @@ void KruskalMST(Graph& graph) {
 }
 ```
 
-2. Prim's Algorithm (MST) -- Partition Algorithm.
+2. [Prim's Algorithm (MST)](https://www.youtube.com/watch?v=cplfcGZmX7I) -- Partition
+	![Prim](https://github.com/alichtman/data-structures-cpp/blob/master/images/Prim.jpg)
 	1. Choose start vertex.
 	2. Add the next lowest weighted incident edge that wouldn't create a cycle and is not already visited. Do this over and over until you have an MST.
-![Prim](images/Prim.jpg)
-https://www.youtube.com/watch?v=cplfcGZmX7I
+
 
 ```cpp
 void Prim(Graph& g, Vertex start) {
@@ -239,11 +154,10 @@ void Prim(Graph& g, Vertex start) {
 
 **Shortest Path Algorithms**
 
-1. Dijkstra's Algorithm -- Closely related to Prim's
+1. [Dijkstra's Algorithm](https://www.youtube.com/watch?v=_lHSawdgXpI) -- Closely related to Prim's
 	+ Can look up distance to any node in $O(1)$ time
 	+ Every edge needs a non-negative weight.
 	+ Next vertex weight is the previous vertex weight plus the edge weight to get there.
-	+ https://www.youtube.com/watch?v=_lHSawdgXpI
 	+ $O(m + nlog(n))$ when using Fibionnaci Trees (My notes say this is the same as Prim's?)
 
 2. Floyd-Warshall

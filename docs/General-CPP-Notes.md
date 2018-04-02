@@ -64,7 +64,7 @@ If any of these three are needed, all three must be defined.
 
 1. Copy Constructor
 2. Destructor
-3. Assignment operator (=)
+3. Assignment operator `(=)`
 
 **Passing Parameters**
 
@@ -97,14 +97,14 @@ If any of these three are needed, all three must be defined.
 1. If you need a custom constructor to construct Base object, Initializer List required to construct Derived class.
 2. Derived inherits public functions of Base directly, and protected data indirectly (may have to use getters). (?)
 
-Constructors called from Base to Derived.
-Destructors called from Derived to Base.
++ Constructors called from Base to Derived.
++ Destructors called from Derived to Base.
 
-`virtual` keyword allows derived classes to override function behavior.
-`virtual Class::func() = 0` is pure virtual. Requires derived class to implement function.
++ `virtual` keyword allows derived classes to override function behavior.
++ `virtual Class::func() = 0` is pure virtual. Requires derived class to implement function.
 
-Constructors can not be virtual.
-Destructor in Base *should* be virtual.
++ Constructors can not be virtual.
++ Destructor in Base *should* be virtual.
 
 **Templates**
 
@@ -113,9 +113,8 @@ Destructor in Base *should* be virtual.
 
 **Iterators**
 
-Iterators allow us to traverse data regardless of underlying structure.
-
-Declared in `public` block of class.
++ Allow us to traverse data regardless of underlying structure.
++ Declared in `public` block of class.
 
 **Functors**
 
